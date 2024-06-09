@@ -1,16 +1,18 @@
 import { Router } from "express";
 import { wrapHandler } from "@medusajs/medusa";
-import customRouteHandler from "./custom-route-handler";
+import { getRates, getRateById, updateRate, deleteRate, createRate } from "./manual-rates-handler";
 
 // Initialize a custom router
 const router = Router();
 
 export function attachAdminRoutes(adminRouter: Router) {
-  // Attach our router to a custom path on the admin router
-  adminRouter.use("/custom", router);
+  adminRouter.use("/manual-rates", router);
 
-  // Define a GET endpoint on the root route of our custom path
-  router.get("/", wrapHandler(customRouteHandler));
+  router.get("/:id", wrapHandler(getRateById));
+  router.get("/", wrapHandler(getRates));
+  router.post("/:id/delete", wrapHandler(deleteRate));
+  router.post("/:id", wrapHandler(updateRate));
+  router.post("/", wrapHandler(createRate));
 
 
 }

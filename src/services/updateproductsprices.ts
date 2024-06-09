@@ -2,6 +2,7 @@ import {  TransactionBaseService, Logger ,CurrencyService } from "@medusajs/medu
 import ExchangeRateService from "./exchangerate";
 import CurrencyConverterService from "./currencyconverter"
 import { PluginOptions } from "../types/types";
+import { CurrencyExchangeRate } from "../models/currency-exchange-rate";
 
 export default class UpdateProductsPricesService extends TransactionBaseService {
     private currencyService: CurrencyService;
